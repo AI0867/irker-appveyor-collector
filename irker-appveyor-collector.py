@@ -42,7 +42,7 @@ def format_build(build):
             **COLORS
     )]
     for job in failures:
-        messages.append("{yellow}{version}/{configuration}{reset} {bold}Details:{reset} {url}".format(
+        messages.append("{bold}Details {yellow}{version}/{configuration}{reset}{bold}:{reset} {url}".format(
             version         = job.version,
             configuration   = job.configuration,
             url             = job.url,
