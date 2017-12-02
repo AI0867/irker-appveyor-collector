@@ -1,0 +1,26 @@
+{
+    "ips": [
+        "74.205.54.20/32",
+        "104.197.110.30/32",
+        "104.197.145.181/32",
+        "146.148.85.29/32",
+        "67.225.139.254/32",
+        "138.91.141.243/32"
+    ],
+    "port": 8080,
+    "targets": {
+        "/some_project": {
+            "repository": "some_org/some_project",
+            "channels": {
+                "*": [
+                    "irc://chat.freenode.net/##some-project"
+                ],
+                "author@some-project.org": [
+                    "irc://chat.freenode.net/##author"
+                ]
+            }
+        }
+    },
+    "timeout": 7200,
+    "max_builds": 10
+}
