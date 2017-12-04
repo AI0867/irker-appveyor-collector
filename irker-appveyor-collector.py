@@ -32,7 +32,7 @@ def format_build(build):
         status_string = "{red}{fail}/{num} Failed{reset}".format(fail=len(failures), num=len(build.jobs), **COLORS)
 
     messages = [
-        "{bold}{repository}:{yellow}{branch}{reset} {green}{author}{reset} {bold}{commit}{reset} {message} {status}".format(
+        "{bold}{repository}{reset}:{yellow}{branch}{reset} {green}{author}{reset} {bold}{commit}{reset} {message} {status}".format(
             repository  = build.repository,
             branch      = build.branch,
             author      = build.author,
@@ -56,7 +56,7 @@ def format_failure(build):
         return []
     configs = ",".join(["{version}/{configuration}".format(**job._asdict()) for job in jobs])
     messages = [
-        "{bold}{repository}:{yellow}{branch}{reset} {green}{author}{reset} {bold}{commit}{reset} {message} {bold}{configs}{reset} {red}Failed".format(
+        "{bold}{repository}{reset}:{yellow}{branch}{reset} {green}{author}{reset} {bold}{commit}{reset} {message} {bold}{configs}{reset} {red}Failed".format(
             repository  = build.repository,
             branch      = build.branch,
             author      = build.author,
