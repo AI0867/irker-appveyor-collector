@@ -25,11 +25,12 @@ def format_build(build):
     failures = [job for job in build.jobs if job.status not in ["success", "cancelled"]]
     success = all([job.status == "success" for job in build.jobs])
     if success:
-        status_string = "{green}All builds passed{reset}".format(**COLORS)
+        status_string = "{bold}AppVeyor:{reset}{green} All builds passed{reset}".format(**COLORS)
     elif not failures:
-        status_string = "{green}Passed{reset}".format(**COLORS)
+        successes = len([job for job in build.jobs if job.status == "success"])
+        status_string = "{bold}AppVeyor:{reset}{green} {num} builds passed{reset}".format(num=successes, **COLORS)
     else:
-        status_string = "{red}{fail}/{num} Failed{reset}".format(fail=len(failures), num=len(build.jobs), **COLORS)
+        status_string = "{bold}AppVeyor:{red} {fail}/{num} builds failed{reset}".format(fail=len(failures), num=len(build.jobs), **COLORS)
 
     messages = [
         "{bold}{repository}{reset}:{yellow}{branch}{reset} {green}{author}{reset} {bold}{commit}{reset} {message} {status}".format(
@@ -56,7 +57,7 @@ def format_failure(build):
         return []
     configs = ",".join(["{version}/{configuration}".format(**job._asdict()) for job in jobs])
     messages = [
-        "{bold}{repository}{reset}:{yellow}{branch}{reset} {green}{author}{reset} {bold}{commit}{reset} {message} {bold}{configs}{reset} {red}Failed".format(
+        "{bold}{repository}{reset}:{yellow}{branch}{reset} {green}{author}{reset} {bold}{commit}{reset} {message} {bold}AppVeyor:{red} {configs} Failed".format(
             repository  = build.repository,
             branch      = build.branch,
             author      = build.author,
